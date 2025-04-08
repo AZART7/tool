@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online PDF tools - compress, convert, edit, merge, split PDF files. 100% secure and easy to use PDF solutions.">
+    <meta name="keywords" content="PDF tools, compress PDF, merge PDF, split PDF, edit PDF, PDF converter, Word to PDF, PDF to Word">
+    <meta name="author" content="PDF Tools Pro">
+    <meta name="robots" content="index, follow">
+    <title>PDF Tools Pro - Compress, Convert, Edit PDF Files Online</title>
+    <link rel="canonical" href="https://www.pdftoolspro.com">
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="PDF Tools Pro - Complete Online PDF Solutions">
+    <meta property="og:description" content="Free online PDF tools - compress, convert, edit, merge, split PDF files. No installation needed.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pdftoolspro.com">
+    <meta property="og:image" content="https://www.pdftoolspro.com/images/og-image.jpg">
+    <style>
+        :root {
+            --primary: #4285f4;
+            --secondary: #34a853;
+            --accent: #ea4335;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .ad-container {
+            background: white;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .tool-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .category {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .category h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tool-list {
+            list-style: none;
+        }
+        
+        .tool-list li {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-list li:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .tool-list li i {
+            margin-right: 10px;
+            color: var(--primary);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .tool-interface {
+            display: none;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .active-tool {
+            display: block;
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--gray);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary);
+            background-color: #f8faff;
+        }
+        
+        .file-upload i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #3367d6;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #2d9249;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .result-container {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            background-color: #f0fff0;
+            border: 1px solid #d4edda;
+        }
+        
+        .back-btn {
+            margin-bottom: 20px;
+        }
+        
+        .scroll-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .tool-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .file-upload {
+                padding: 20px;
+            }
+            
+            .scroll-notification {
+                width: 90%;
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-file-pdf"></i> PDF Tools Pro</h1>
+            <p>All your PDF needs in one place - 100% free</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Top Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_TOP"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <div class="tool-categories">
+            <div class="category">
+                <h2><i class="fas fa-compress-alt"></i> Compress</h2>
+                <ul class="tool-list">
+                    <li onclick="showTool('compress-pdf')"><i class="fas fa-file-pdf"></i> Compress PDF</li>
+                </ul>
+            </div>
+            
+            <div class="category">
+                <h2><i class="fas fa-exchange-alt"></i> Convert</h2>
+                <ul class="tool-list">
+                    <li onclick="showTool('convert-pdf')"><i class="fas fa-exchange-alt"></i> PDF Converter</li>
+                </ul>
+            </div>
+            
+            <div class="category">
+                <h2><i class="fas fa-folder-open"></i> Organize</h2>
+                <ul class="tool-list">
+                    <li onclick="showTool('merge-pdf')"><i class="fas fa-object-group"></i> Merge PDF</li>
+                    <li onclick="showTool('split-pdf')"><i class="fas fa-cut"></i> Split PDF</li>
+                    <li onclick="showTool('rotate-pdf')"><i class="fas fa-redo"></i> Rotate PDF</li>
+                </ul>
+            </div>
+            
+            <div class="category">
+                <h2><i class="fas fa-edit"></i> Edit</h2>
+                <ul class="tool-list">
+                    <li onclick="showTool('edit-pdf')"><i class="fas fa-pencil-alt"></i> Edit PDF</li>
+                    <li onclick="showTool('watermark-pdf')"><i class="fas fa-stamp"></i> Watermark PDF</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Middle Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_MIDDLE"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- Compress PDF Tool -->
+        <div id="compress-pdf" class="tool-interface">
+            <button class="btn back-btn" onclick="hideTool('compress-pdf')"><i class="fas fa-arrow-left"></i> Back to Tools</button>
+            <h2><i class="fas fa-compress-alt"></i> Compress PDF</h2>
+            <p>Reduce PDF file size while preserving quality</p>
+            
+            <div class="file-upload" id="compress-upload">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Select PDF File</h3>
+                <p>Drag and drop your PDF here or click to browse</p>
+                <input type="file" id="compress-file" accept=".pdf" style="display: none;">
+                <button class="btn" onclick="document.getElementById('compress-file').click()">Select File</button>
+            </div>
+            
+            <div class="progress-container" id="compress-progress">
+                <div class="progress-bar">
+                    <div class="progress" id="compress-progress-bar"></div>
+                </div>
+                <p id="compress-progress-text">Processing...</p>
+            </div>
+            
+            <div class="result-container" id="compress-result">
+                <h3><i class="fas fa-check-circle"></i> PDF Compressed Successfully!</h3>
+                <p>File size reduced by <span id="reduction-percent">0%</span></p>
+                <button class="btn" id="compress-download">Download Compressed PDF</button>
+                <button class="btn btn-secondary" onclick="resetTool('compress')">Compress Another PDF</button>
+            </div>
+        </div>
+
+        <!-- PDF Converter Tool -->
+        <div id="convert-pdf" class="tool-interface">
+            <button class="btn back-btn" onclick="hideTool('convert-pdf')"><i class="fas fa-arrow-left"></i> Back to Tools</button>
+            <h2><i class="fas fa-exchange-alt"></i> PDF Converter</h2>
+            <p>Convert PDF to other formats and vice versa</p>
+            
+            <div class="file-upload" id="convert-upload">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Select File</h3>
+                <p>Drag and drop your file here or click to browse</p>
+                <input type="file" id="convert-file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.png" style="display: none;">
+                <button class="btn" onclick="document.getElementById('convert-file').click()">Select File</button>
+            </div>
+            
+            <div id="convert-options" style="display: none; margin: 20px 0;">
+                <h4>Convert To:</h4>
+                <select id="convert-format" class="btn" style="background: white; color: var(--dark); border: 1px solid #ddd;">
+                    <option value="pdf-to-word">PDF to Word (DOCX)</option>
+                    <option value="pdf-to-excel">PDF to Excel (XLSX)</option>
+                    <option value="pdf-to-ppt">PDF to PowerPoint (PPTX)</option>
+                    <option value="pdf-to-jpg">PDF to JPG</option>
+                    <option value="word-to-pdf">Word to PDF</option>
+                    <option value="excel-to-pdf">Excel to PDF</option>
+                    <option value="ppt-to-pdf">PowerPoint to PDF</option>
+                    <option value="jpg-to-pdf">JPG to PDF</option>
+                </select>
+                <button class="btn" id="convert-process">Convert File</button>
+            </div>
+            
+            <div class="progress-container" id="convert-progress">
+                <div class="progress-bar">
+                    <div class="progress" id="convert-progress-bar"></div>
+                </div>
+                <p id="convert-progress-text">Processing...</p>
+            </div>
+            
+            <div class="result-container" id="convert-result">
+                <h3><i class="fas fa-check-circle"></i> Conversion Complete!</h3>
+                <button class="btn" id="convert-download">Download Converted File</button>
+                <button class="btn btn-secondary" onclick="resetTool('convert')">Convert Another File</button>
+            </div>
+        </div>
+
+        <!-- Merge PDF Tool -->
+        <div id="merge-pdf" class="tool-interface">
+            <button class="btn back-btn" onclick="hideTool('merge-pdf')"><i class="fas fa-arrow-left"></i> Back to Tools</button>
+            <h2><i class="fas fa-object-group"></i> Merge PDF</h2>
+            <p>Combine multiple PDFs into one document</p>
+            
+            <div class="file-upload" id="merge-upload">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Select PDF Files</h3>
+                <p>Drag and drop your PDFs here or click to browse</p>
+                <input type="file" id="merge-files" accept=".pdf" multiple style="display: none;">
+                <button class="btn" onclick="document.getElementById('merge-files').click()">Select Files</button>
+            </div>
+            
+            <div id="merge-file-list" style="display: none; margin: 20px 0;">
+                <h4>Files to Merge (drag to reorder):</h4>
+                <ul id="merge-list" style="list-style: none; border: 1px solid #ddd; padding: 10px; border-radius: 4px; min-height: 100px;"></ul>
+                <button class="btn" id="merge-process">Merge PDFs</button>
+            </div>
+            
+            <div class="progress-container" id="merge-progress">
+                <div class="progress-bar">
+                    <div class="progress" id="merge-progress-bar"></div>
+                </div>
+                <p id="merge-progress-text">Processing...</p>
+            </div>
+            
+            <div class="result-container" id="merge-result">
+                <h3><i class="fas fa-check-circle"></i> PDFs Merged Successfully!</h3>
+                <button class="btn" id="merge-download">Download Merged PDF</button>
+                <button class="btn btn-secondary" onclick="resetTool('merge')">Merge More PDFs</button>
+            </div>
+        </div>
+
+        <!-- Edit PDF Tool -->
+        <div id="edit-pdf" class="tool-interface">
+            <button class="btn back-btn" onclick="hideTool('edit-pdf')"><i class="fas fa-arrow-left"></i> Back to Tools</button>
+            <h2><i class="fas fa-pencil-alt"></i> Edit PDF</h2>
+            <p>Modify text and images in your PDF</p>
+            
+            <div class="file-upload" id="edit-upload">
+                <i class="fas fa-file-pdf"></i>
+                <h3>Select PDF File</h3>
+                <p>Drag and drop your PDF here or click to browse</p>
+                <input type="file" id="edit-file" accept=".pdf" style="display: none;">
+                <button class="btn" onclick="document.getElementById('edit-file').click()">Select File</button>
+            </div>
+            
+            <div id="edit-interface" style="display: none; margin-top: 20px;">
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <h4>PDF Preview</h4>
+                        <div style="border: 1px solid #ddd; height: 400px; overflow: auto; padding: 10px; background: #f8f9fa;">
+                            <p>PDF preview will appear here after upload</p>
+                        </div>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4>Edit Tools</h4>
+                        <div style="margin-bottom: 15px;">
+                            <button class="btn" style="margin-right: 5px;"><i class="fas fa-font"></i> Text</button>
+                            <button class="btn" style="margin-right: 5px;"><i class="fas fa-image"></i> Image</button>
+                            <button class="btn" style="margin-right: 5px;"><i class="fas fa-highlighter"></i> Highlight</button>
+                        </div>
+                        <textarea id="edit-content" style="width: 100%; height: 300px; padding: 10px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+                        <button class="btn" id="edit-save" style="margin-top: 10px;">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="progress-container" id="edit-progress">
+                <div class="progress-bar">
+                    <div class="progress" id="edit-progress-bar"></div>
+                </div>
+                <p id="edit-progress-text">Processing...</p>
+            </div>
+            
+            <div class="result-container" id="edit-result">
+                <h3><i class="fas fa-check-circle"></i> PDF Edited Successfully!</h3>
+                <button class="btn" id="edit-download">Download Edited PDF</button>
+                <button class="btn btn-secondary" onclick="resetTool('edit')">Edit Another PDF</button>
+            </div>
+        </div>
+
+        <!-- Bottom Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_BOTTOM"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <!-- Scroll Notification -->
+    <div class="scroll-notification" id="scrollNotification">
+        <i class="fas fa-arrow-down"></i> Scroll down to see the tool interface
+    </div>
+
+    <script>
+        // Tool navigation
+        function showTool(toolId) {
+            document.querySelectorAll('.tool-interface').forEach(tool => {
+                tool.classList.remove('active-tool');
+            });
+            document.getElementById(toolId).classList.add('active-tool');
+            
+            // Show scroll notification
+            const notification = document.getElementById('scrollNotification');
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+            
+            // Scroll to the tool
+            setTimeout(() => {
+                document.getElementById(toolId).scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+        
+        function hideTool(toolId) {
+            document.getElementById(toolId).classList.remove('active-tool');
+        }
+        
+        function resetTool(tool) {
+            document.getElementById(`${tool}-progress`).style.display = 'none';
+            document.getElementById(`${tool}-result`).style.display = 'none';
+            
+            // Reset file input
+            document.getElementById(`${tool}-file`).value = '';
+            
+            // Reset upload area
+            const uploadHTML = {
+                'compress': `<i class="fas fa-file-pdf"></i>
+                            <h3>Select PDF File</h3>
+                            <p>Drag and drop your PDF here or click to browse</p>
+                            <input type="file" id="compress-file" accept=".pdf" style="display: none;">
+                            <button class="btn" onclick="document.getElementById('compress-file').click()">Select File</button>`,
+                'convert': `<i class="fas fa-file-pdf"></i>
+                          <h3>Select File</h3>
+                          <p>Drag and drop your file here or click to browse</p>
+                          <input type="file" id="convert-file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.png" style="display: none;">
+                          <button class="btn" onclick="document.getElementById('convert-file').click()">Select File</button>`,
+                'merge': `<i class="fas fa-file-pdf"></i>
+                         <h3>Select PDF Files</h3>
+                         <p>Drag and drop your PDFs here or click to browse</p>
+                         <input type="file" id="merge-files" accept=".pdf" multiple style="display: none;">
+                         <button class="btn" onclick="document.getElementById('merge-files').click()">Select Files</button>`,
+                'edit': `<i class="fas fa-file-pdf"></i>
+                        <h3>Select PDF File</h3>
+                        <p>Drag and drop your PDF here or click to browse</p>
+                        <input type="file" id="edit-file" accept=".pdf" style="display: none;">
+                        <button class="btn" onclick="document.getElementById('edit-file').click()">Select File</button>`
+            };
+            
+            document.getElementById(`${tool}-upload`).innerHTML = uploadHTML[tool];
+            document.getElementById(`${tool}-interface`).style.display = 'none';
+            document.getElementById(`${tool}-options`).style.display = 'none';
+            
+            // Reinitialize event listeners
+            initToolEvents(tool);
+        }
+        
+        // Initialize tool events
+        function initToolEvents(tool) {
+            const fileInput = document.getElementById(`${tool}-file`);
+            const uploadArea = document.getElementById(`${tool}-upload`);
+            
+            if (fileInput && uploadArea) {
+                // Click handler
+                uploadArea.addEventListener('click', () => fileInput.click());
+                
+                // File selection handler
+                fileInput.addEventListener('change', (e) => handleFileSelection(tool, e));
+                
+                // Drag and drop handlers
+                uploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadArea.style.borderColor = 'var(--primary)';
+                    uploadArea.style.backgroundColor = '#f0f7ff';
+                });
+                
+                uploadArea.addEventListener('dragleave', () => {
+                    uploadArea.style.borderColor = 'var(--gray)';
+                    uploadArea.style.backgroundColor = '';
+                });
+                
+                uploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadArea.style.borderColor = 'var(--gray)';
+                    uploadArea.style.backgroundColor = '';
+                    handleFileSelection(tool, { target: { files: e.dataTransfer.files } });
+                });
+            }
+        }
+        
+        // Handle file selection for all tools
+        function handleFileSelection(tool, event) {
+            const files = event.target.files;
+            if (files.length > 0) {
+                const file = files[0];
+                const uploadArea = document.getElementById(`${tool}-upload`);
+                
+                // Validate file type
+                if (tool !== 'convert' && !file.name.toLowerCase().endsWith('.pdf')) {
+                    alert('Please select a PDF file.');
+                    return;
+                }
+                
+                // Update UI based on tool
+                switch(tool) {
+                    case 'compress':
+                        uploadArea.innerHTML = `
+                            <i class="fas fa-check-circle" style="color: var(--secondary); font-size: 48px;"></i>
+                            <h3>${file.name}</h3>
+                            <p>${(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                            <button class="btn" id="compress-process">Compress PDF</button>
+                        `;
+                        document.getElementById('compress-process').addEventListener('click', () => processTool('compress'));
+                        break;
+                        
+                    case 'convert':
+                        uploadArea.innerHTML = `
+                            <i class="fas fa-check-circle" style="color: var(--secondary); font-size: 48px;"></i>
+                            <h3>${file.name}</h3>
+                            <p>${(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                        `;
+                        document.getElementById('convert-options').style.display = 'block';
+                        document.getElementById('convert-process').addEventListener('click', () => processTool('convert'));
+                        break;
+                        
+                    case 'merge':
+                        uploadArea.innerHTML = `
+                            <i class="fas fa-check-circle" style="color: var(--secondary); font-size: 48px;"></i>
+                            <h3>${files.length} Files Selected</h3>
+                        `;
+                        const fileList = document.getElementById('merge-list');
+                        fileList.innerHTML = '';
+                        Array.from(files).forEach((file, index) => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `
+                                <div style="padding: 8px; margin: 5px 0; background: #f5f5f5; border-radius: 4px; cursor: move;" draggable="true">
+                                    ${index + 1}. ${file.name} (${(file.size / (1024 * 1024)).toFixed(2)} MB)
+                                </div>
+                            `;
+                            fileList.appendChild(li);
+                        });
+                        document.getElementById('merge-file-list').style.display = 'block';
+                        document.getElementById('merge-process').addEventListener('click', () => processTool('merge'));
+                        break;
+                        
+                    case 'edit':
+                        uploadArea.innerHTML = `
+                            <i class="fas fa-check-circle" style="color: var(--secondary); font-size: 48px;"></i>
+                            <h3>${file.name}</h3>
+                            <p>${(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                        `;
+                        document.getElementById('edit-interface').style.display = 'block';
+                        document.getElementById('edit-save').addEventListener('click', () => processTool('edit'));
+                        break;
+                }
+            }
+        }
+        
+        // Process tool (simulated)
+        function processTool(tool) {
+            const progressBar = document.getElementById(`${tool}-progress-bar`);
+            const progressText = document.getElementById(`${tool}-progress-text`);
+            const progressContainer = document.getElementById(`${tool}-progress`);
+            
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            progressText.textContent = 'Processing... 0%';
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = `${progress}%`;
+                progressText.textContent = `Processing... ${Math.floor(progress)}%`;
+                
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        progressContainer.style.display = 'none';
+                        document.getElementById(`${tool}-result`).style.display = 'block';
+                        
+                        // Set some result data
+                        if (tool === 'compress') {
+                            const reduction = Math.floor(Math.random() * 60) + 10;
+                            document.getElementById('reduction-percent').textContent = `${reduction}%`;
+                        }
+                    }, 500);
+                }
+            }, 300);
+        }
+        
+        // Initialize all tools on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            ['compress', 'convert', 'merge', 'edit'].forEach(tool => {
+                initToolEvents(tool);
+            });
+            
+            // Set up download buttons (simulated)
+            document.getElementById('compress-download').addEventListener('click', () => {
+                alert('In a real implementation, this would download the compressed PDF');
+            });
+            
+            document.getElementById('convert-download').addEventListener('click', () => {
+                alert('In a real implementation, this would download the converted file');
+            });
+            
+            document.getElementById('merge-download').addEventListener('click', () => {
+                alert('In a real implementation, this would download the merged PDF');
+            });
+            
+            document.getElementById('edit-download').addEventListener('click', () => {
+                alert('In a real implementation, this would download the edited PDF');
+            });
+        });
+    </script>
+</body>
+</html>
